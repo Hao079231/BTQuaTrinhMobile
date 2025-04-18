@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:weightSum="8"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textViewNameNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:textSize="20sp"
+        android:text="Ví dụ SQLite 1"
+        android:layout_margin="20dp"/>
+    <ImageView
+        android:id="@+id/imageViewEdit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:layout_gravity="end"
+        android:src="@drawable/edit"/>
+    <ImageView
+        android:id="@+id/imageViewDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:layout_gravity="end"
+        android:src="@drawable/delete"/>
+</LinearLayout>

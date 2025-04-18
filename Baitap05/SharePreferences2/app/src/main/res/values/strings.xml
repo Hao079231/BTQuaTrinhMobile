@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Share Preferences 2</string>
+
+    <string name="error_field_required">Email khong duoc rong</string>
+    <string name="error_invalid_email">Email khong dung dinh dang</string>
+    <string name="error_invalid_password">Mat khau phai lon hon 4 ky tu</string>
+</resources>

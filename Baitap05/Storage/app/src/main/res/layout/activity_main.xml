@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Add TextView for displaying file content -->
+    <TextView
+        android:id="@+id/txtFileContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nội dung file sẽ hiển thị ở đây" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên" />
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập mật khẩu"
+        android:inputType="textPassword" />
+
+    <Button
+        android:onClick="saveMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu" />
+
+    <EditText
+        android:id="@+id/getName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên đã lưu"
+        android:focusable="false" />
+
+    <EditText
+        android:id="@+id/getPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mật khẩu đã lưu"
+        android:inputType="textPassword"
+        android:focusable="false" />
+
+    <Button
+        android:onClick="loadMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tải dữ liệu" />
+</LinearLayout>

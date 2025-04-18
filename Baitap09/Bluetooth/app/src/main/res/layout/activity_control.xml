@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControlActivity">
+
+    <TextView
+        android:id="@+id/textV1"
+        android:layout_width="400dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Thong bao"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnTb1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginTop="76dp"
+        android:text="Thiet bi dang ket noi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+        android:layout_width="116dp"
+        android:layout_height="112dp"
+        android:id="@+id/btnTb2"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/tb1on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnTb1"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintHorizontal_bias="0.813"/>
+    <ImageButton
+        android:id="@+id/btnTb1"
+        android:layout_width="116dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="92dp"
+        android:background="@drawable/tb1on"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewMAC"
+        android:layout_marginTop="16dp"
+        android:text="Dia chi MAC"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintHorizontal_bias="0.498"/>
+    <ImageButton
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:id="@+id/btnDisc"
+        android:background="@drawable/btn_not_connect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textV1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/backgroud1"
+        android:layout_width="match_parent"
+        android:layout_height="395dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/top_background2" />
+    <TextView
+        android:id="@+id/tv_welcome_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create \nAccount"
+        android:textSize="35dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/blue"
+        android:layout_below="@+id/backgroud1"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/ev_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:hint="Name"
+        android:drawablePadding="10dp"
+        android:layout_below="@+id/tv_welcome_back"
+        android:drawableStart="@drawable/name"/>
+
+    <EditText
+        android:id="@+id/ev_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:hint="Email"
+        android:drawablePadding="10dp"
+        android:layout_below="@+id/ev_name"
+        android:drawableStart="@drawable/email"/>
+    <EditText
+        android:id="@+id/ev_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:hint="Password"
+        android:drawablePadding="10dp"
+        android:layout_below="@id/ev_email"
+        android:drawableStart="@drawable/password"/>
+
+    <ImageButton
+        android:id="@+id/button_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_arrow2"
+        android:background="@color/white"
+        android:layout_gravity="end"
+        android:layout_below="@+id/ev_password"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Forget your password? Recovery it"
+        android:textColor="@color/blue"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
