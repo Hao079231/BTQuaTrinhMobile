@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/searchView"
-        android:background="@color/red"
+        android:background="@color/design_default_color_secondary"
         android:paddingBottom="10dp"/>
 
 </RelativeLayout>
