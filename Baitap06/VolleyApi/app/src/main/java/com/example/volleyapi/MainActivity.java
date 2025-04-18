@@ -7,11 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -32,25 +28,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+
+        // Kiểm tra nếu đã đăng nhập thì chuyển sang ProfileActivity
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, ProfileActivity.class));
+            return;
         }
+
+        // Khởi tạo các view
         etName = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
-        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userLogin();
-            }
-        });
 
+        // Xử lý sự kiện nhấn nút đăng nhập
+        findViewById(R.id.btnLogin).setOnClickListener(view -> userLogin());
     }
 
     private void userLogin() {
-        final String username = etName.getText().toString();
-        final String password = etPassword.getText().toString();
-        if(TextUtils.isEmpty(username)){
+        final String username = etName.getText().toString().trim();
+        final String password = etPassword.getText().toString().trim();
+
+        // Kiểm tra dữ liệu đầu vào
+        if (TextUtils.isEmpty(username)) {
             etName.setError("Please enter your username");
             etName.requestFocus();
             return;
@@ -61,47 +60,49 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_LOGIN, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if (!obj.getBoolean("error")) {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        JSONObject userJson = obj.getJSONObject("user");
-                        User user = new User(
-                                userJson.getInt("id"),
-                                userJson.getString("username"),
-                                userJson.getString("email"),
-                                userJson.getString("gender"),
-                                userJson.getString("images")
-                        );
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                        finish();
-                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+        // Tạo yêu cầu Volley
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_LOGIN,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (!obj.getBoolean("error")) {
+                            Toast.makeText(MainActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            JSONObject userJson = obj.getJSONObject("user");
+                            User user = new User(
+                                    userJson.getInt("id"),
+                                    userJson.getString("username"),
+                                    userJson.getString("email"),
+                                    userJson.getString("gender"),
+                                    userJson.getString("images")
+                            );
+                            SharedPrefManager.getInstance(MainActivity.this).userLogin(user);
+                            finish();
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        } else {
+                            Toast.makeText(MainActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "Lỗi phân tích dữ liệu", Toast.LENGTH_SHORT).show();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }){
+                },
+                error -> {
+                    // Xử lý lỗi Volley, đảm bảo Toast không nhận giá trị null
+                    String errorMessage = error.getMessage();
+                    Toast.makeText(MainActivity.this,
+                            errorMessage != null ? errorMessage : "Lỗi kết nối, vui lòng thử lại",
+                            Toast.LENGTH_SHORT).show();
+                }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError{
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("username", username);
                 params.put("password", password);
                 return params;
             }
         };
+
+        // Thêm yêu cầu vào hàng đợi
         VolleySingle.getInstance(this).addToRequestQueue(stringRequest);
     }
-}
+}   

@@ -27,48 +27,76 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:stretchColumns="*">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/labelId"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="16dp"
                 android:text="Id"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:id="@+id/tvId"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="2"
                 android:textColor="#FFFFFF"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/labelUsername"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="16dp"
                 android:text="Username"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:id="@+id/tvUsername"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text=""
                 android:textColor="#FFFFFF"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/labelEmail"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="16dp"
                 android:text="Email"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:id="@+id/tvEmail"
-                android:text="trung2@gmail.com"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="trunghao@gmail.com"
                 android:textColor="#FFFFFF"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/labelGender"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="16dp"
                 android:text="Gender"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:id="@+id/tvGender"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="nam"
                 android:textColor="#FFFFFF"/>
         </TableRow>
