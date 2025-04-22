@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editVideoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter video title"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editVideoDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter video description"
+        android:inputType="textMultiLine"
+        android:minLines="3" />
 
     <Button
         android:id="@+id/btnSelectVideo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Video"/>
+        android:text="Select Video" />
 
     <Button
         android:id="@+id/btnUploadVideo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Upload Video"/>
+        android:text="Upload Video" />
 
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back" />
 
-
     <ProgressBar
         android:id="@+id/uploadProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:visibility="gone"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
 </LinearLayout>
