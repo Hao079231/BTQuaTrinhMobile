@@ -1,7 +1,6 @@
 package com.example.firebase;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +19,10 @@ import java.util.List;
 public class VideosFireBaseAdapter extends RecyclerView.Adapter<VideosFireBaseAdapter.MyHolder> {
 
     private List<Video1Model> videoList;
-    private boolean isFav = false;
-    private boolean isDisliked = false;
 
     public VideosFireBaseAdapter(List<Video1Model> videoList) {
         this.videoList = videoList;
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
@@ -37,18 +33,17 @@ public class VideosFireBaseAdapter extends RecyclerView.Adapter<VideosFireBaseAd
         holder.textLikeCount.setText(String.valueOf(model.getLikeCount()));
         holder.textDislikeCount.setText(String.valueOf(model.getDislikeCount()));
 
+        // Cập nhật trạng thái like/dislike từ model
+        holder.favorites.setImageResource(model.isLiked() ? R.drawable.ic_fill_favorite : R.drawable.ic_favorite);
+        holder.dislike.setImageResource(model.isDisliked() ? R.drawable.ic_fill_dislike : R.drawable.ic_dislike);
+
         // Set up video from URL
         String videoUrl = model.getUrl();
         Log.d("VideosFireBaseAdapter", "Video URL: " + videoUrl);
         if (videoUrl != null && !videoUrl.isEmpty()) {
             try {
                 Uri videoUri = Uri.parse(videoUrl);
-                holder.videoView.setVideoURI(videoUri); // Handle profile icon click
-        holder.imPerson.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(), ProfileActivity.class);
-            intent.putExtra("uploader_email", model.getUploaderEmail());
-            holder.itemView.getContext().startActivity(intent);
-        });
+                holder.videoView.setVideoURI(videoUri);
 
                 // Show progress bar while preparing video
                 holder.videoProgressBar.setVisibility(View.VISIBLE);
@@ -97,29 +92,29 @@ public class VideosFireBaseAdapter extends RecyclerView.Adapter<VideosFireBaseAd
 
         // Handle favorite (like) button
         holder.favorites.setOnClickListener(v -> {
-            if (!isFav) {
+            if (!model.isLiked()) {
                 holder.favorites.setImageResource(R.drawable.ic_fill_favorite);
                 model.setLikeCount(model.getLikeCount() + 1);
-                isFav = true;
+                model.setLiked(true);
             } else {
                 holder.favorites.setImageResource(R.drawable.ic_favorite);
                 model.setLikeCount(Math.max(0, model.getLikeCount() - 1));
-                isFav = false;
+                model.setLiked(false);
             }
             holder.textLikeCount.setText(String.valueOf(model.getLikeCount()));
             notifyDataSetChanged();
-            });
+        });
 
         // Handle dislike button
         holder.dislike.setOnClickListener(v -> {
-            if (!isDisliked) {
+            if (!model.isDisliked()) {
                 holder.dislike.setImageResource(R.drawable.ic_fill_dislike);
                 model.setDislikeCount(model.getDislikeCount() + 1);
-                isDisliked = true;
+                model.setDisliked(true);
             } else {
                 holder.dislike.setImageResource(R.drawable.ic_dislike);
                 model.setDislikeCount(Math.max(0, model.getDislikeCount() - 1));
-                isDisliked = false;
+                model.setDisliked(false);
             }
             holder.textDislikeCount.setText(String.valueOf(model.getDislikeCount()));
             notifyDataSetChanged();
@@ -160,7 +155,7 @@ public class VideosFireBaseAdapter extends RecyclerView.Adapter<VideosFireBaseAd
         private TextView textUploaderEmail;
         private TextView textLikeCount;
         private TextView textDislikeCount;
-        private ImageView imPerson, favorites, imShare, imMore, dislike, profileIcon;
+        private ImageView imPerson, favorites, imShare, imMore, dislike;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
