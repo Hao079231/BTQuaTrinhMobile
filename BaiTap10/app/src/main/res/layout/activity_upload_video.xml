@@ -18,6 +18,13 @@
         android:layout_height="wrap_content"
         android:text="Upload Video"/>
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+
     <ProgressBar
         android:id="@+id/uploadProgressBar"
         android:layout_width="50dp"

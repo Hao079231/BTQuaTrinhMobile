@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton; // Updated import
+import android.widget.ImageButton;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ public class VideoShortFireBaseActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private VideosFireBaseAdapter videosAdapter;
     private List<Video1Model> videoList;
-
+    private int userVideoCount = 0; // Track number of videos uploaded by user
     private final ActivityResultLauncher<Intent> uploadVideoLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -28,9 +31,12 @@ public class VideoShortFireBaseActivity extends AppCompatActivity {
                     String videoUrl = result.getData().getStringExtra("video_url");
                     String videoTitle = result.getData().getStringExtra("video_title");
                     String videoDesc = result.getData().getStringExtra("video_desc");
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uploaderEmail = user != null ? user.getEmail() : "Unknown";
 
                     // Add new video to the list and notify adapter
-                    videoList.add(new Video1Model(videoTitle, videoDesc, videoUrl));
+                    videoList.add(new Video1Model(videoTitle, videoDesc, videoUrl, uploaderEmail));
+                    userVideoCount++; // Increment video count
                     videosAdapter.notifyDataSetChanged();
                 }
             });
@@ -44,7 +50,7 @@ public class VideoShortFireBaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager2 = findViewById(R.id.vpager);
-        ImageButton btnUpload = findViewById(R.id.btnUpload); // Changed from Button to ImageButton
+        ImageButton btnUpload = findViewById(R.id.btnUpload);
 
         // Set up upload button
         btnUpload.setOnClickListener(v -> {
@@ -58,21 +64,35 @@ public class VideoShortFireBaseActivity extends AppCompatActivity {
     private void setupVideos() {
         // Initialize video list
         videoList = new ArrayList<>();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uploaderEmail = user != null ? user.getEmail() : "Unknown";
+
         videoList.add(new Video1Model(
                 "Dàn siêu xe",
+                "https://res.cloudinary.com/dmgy0rmjw/video/upload/l8gm0tczvi1sdxtqijvm.mp4",
                 "Dàn siêu xe chạy khắp đường phố",
-                "https://res.cloudinary.com/dmgy0rmjw/video/upload/l8gm0tczvi1sdxtqijvm.mp4"
+                100,
+                "hao@gmail.com",
+                100
         ));
 
         videoList.add(new Video1Model(
                 "Quân đội nhân dân Việt Nam",
+                "https://res.cloudinary.com/dmgy0rmjw/video/upload/dplqrbpnztuftw4fskkt.mp4",
                 "Tự hào là con dân Việt Nam",
-                "https://res.cloudinary.com/dmgy0rmjw/video/upload/dplqrbpnztuftw4fskkt.mp4"
+                100,
+                "hao@gmail.com",
+                100
         ));
 
         // Set up adapter
         videosAdapter = new VideosFireBaseAdapter(videoList);
         viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         viewPager2.setAdapter(videosAdapter);
+    }
+
+    // Method to get video count for ProfileActivity
+    public int getUserVideoCount() {
+        return userVideoCount;
     }
 }
