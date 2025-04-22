@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class UploadVideoActivity extends AppCompatActivity {
 
-    private Button btnSelectVideo, btnUploadVideo;
+    private Button btnSelectVideo, btnUploadVideo, btnBack;
     private ProgressBar uploadProgressBar;
     private Uri videoUri;
     private boolean isCloudinaryInitialized = false;
@@ -44,6 +44,7 @@ public class UploadVideoActivity extends AppCompatActivity {
 
         btnSelectVideo = findViewById(R.id.btnSelectVideo);
         btnUploadVideo = findViewById(R.id.btnUploadVideo);
+        btnBack = findViewById(R.id.btnBack);
         uploadProgressBar = findViewById(R.id.uploadProgressBar);
 
         if (uploadProgressBar == null) {
@@ -84,6 +85,8 @@ public class UploadVideoActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please select a video or check Cloudinary configuration", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnBack.setOnClickListener(v -> finish());
     }
 
     private void uploadToCloudinary(Uri videoUri) {

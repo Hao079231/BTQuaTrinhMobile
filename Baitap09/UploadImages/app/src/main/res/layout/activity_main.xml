@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="tlinh"
+                android:text="trunghao"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"/>
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:text="Nguyễn Hoàng Thùy Linh"
+                android:text="Trịnh Trung Hào"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -156,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="tlinh@gmail.com"
+                android:text="trunghao@gmail.com"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"/>
@@ -182,7 +182,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Female"
+                android:text="Male"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"/>

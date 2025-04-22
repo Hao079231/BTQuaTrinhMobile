@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Images(R.drawable.coffee));
         list.add(new Images(R.drawable.pizza));
         list.add(new Images(R.drawable.restaurant));
+        list.add(new Images(R.drawable.matchalatte));
         return list;
     }
 }

@@ -7,27 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- ViewPager2: Chiếm toàn bộ màn hình -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnUpload"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_upload"
-        android:contentDescription="Upload Video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
-        android:scaleType="fitCenter"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Nút tải lên: Ở giữa dưới cùng -->
+    <ImageButton
+        android:id="@+id/btnUpload"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_upload"
+        android:contentDescription="Upload Video"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
